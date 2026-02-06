@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { InstagramIcon, Facebook01Icon, NewTwitterIcon } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { InstagramIcon, Facebook01Icon, NewTwitterIcon } from "@hugeicons/core-free-icons";
 
 export default function Footer() {
   return (
@@ -33,15 +34,15 @@ export default function Footer() {
             <h3 className="text-accent font-heading text-lg font-bold uppercase tracking-widest mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
               <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-                <InstagramIcon size={20} />
+                <HugeiconsIcon icon={InstagramIcon} size={20} />
                 <span className="sr-only">Instagram</span>
               </a>
               <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-                <Facebook01Icon size={20} />
+                <HugeiconsIcon icon={Facebook01Icon} size={20} />
                 <span className="sr-only">Facebook</span>
               </a>
               <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-                <NewTwitterIcon size={20} />
+                <HugeiconsIcon icon={NewTwitterIcon} size={20} />
                 <span className="sr-only">Twitter</span>
               </a>
             </div>
