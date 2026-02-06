@@ -1,5 +1,5 @@
 "use client";
-import { X, Trash2, ShieldCheck } from "lucide-react";
+import { Cancel01Icon, Delete02Icon, ShieldDoneIcon } from "@hugeicons/react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -56,7 +56,7 @@ export default function CartModal() {
                 onClick={() => setIsCartOpen(false)}
                 className="text-neutral hover:text-secondary -mr-2"
               >
-                <X className="h-5 w-5" />
+                <Cancel01Icon size={20} />
               </Button>
             </div>
 
@@ -64,7 +64,7 @@ export default function CartModal() {
             <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-neutral space-y-4">
-                   <ShieldCheck className="h-12 w-12 opacity-10" />
+                   <ShieldDoneIcon size={48} className="opacity-10" />
                    <p className="font-heading uppercase tracking-widest text-xs opacity-40">Your cart is empty</p>
                 </div>
               ) : (
@@ -92,7 +92,7 @@ export default function CartModal() {
                             onClick={() => removeFromCart(item.id)}
                             className="text-neutral hover:text-red-500 transition-colors"
                           >
-                            <Trash2 className="h-3.5 w-3.5" />
+                            <Delete02Icon size={14} />
                           </button>
                         </div>
                         <p className="text-[10px] text-neutral mt-2 uppercase tracking-wider">Size: {item.size}</p>

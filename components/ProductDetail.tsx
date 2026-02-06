@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Product } from "@/lib/products";
 import clsx from "clsx";
 import SizingGuideModal from "./SizingGuideModal";
-import { ShoppingBag, Ruler } from "lucide-react";
+import { ShoppingBag01Icon, RulerIcon } from "@hugeicons/react";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 
@@ -103,7 +103,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                      onClick={() => setIsSizingOpen(true)}
                      className="flex items-center gap-1 text-sm text-secondary hover:text-primary transition-colors underline"
                    >
-                     <Ruler className="h-4 w-4" />
+                     <RulerIcon size={16} className="mr-1" />
                      Sizing Guide
                    </button>
                 </div>
@@ -128,9 +128,9 @@ export default function ProductDetail({ product }: { product: Product }) {
 
             <Button
               onClick={handleAddToCart}
-              className="w-full py-7 font-heading font-bold uppercase tracking-[3px]"
+              className="w-full py-7 font-heading font-bold uppercase tracking-[3px] rounded-none"
             >
-              <ShoppingBag className="h-5 w-5 mr-2" />
+              <ShoppingBag01Icon size={20} className="mr-2" />
               Add to Cart
             </Button>
           </div>

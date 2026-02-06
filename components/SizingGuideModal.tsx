@@ -1,5 +1,5 @@
 "use client";
-import { X } from "lucide-react";
+import { Cancel01Icon } from "@hugeicons/react";
 
 interface SizingGuideModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ export default function SizingGuideModal({ isOpen, onClose, category }: SizingGu
           onClick={onClose}
           className="absolute top-4 right-4 p-2 text-primary hover:text-secondary transition-colors"
         >
-          <X className="h-6 w-6" />
+          <Cancel01Icon size={24} />
         </button>
         
         <div className="p-8">

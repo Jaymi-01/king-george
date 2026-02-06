@@ -1,5 +1,5 @@
 "use client";
-import { X, MessageCircle, Copy, CheckCircle, ShieldCheck } from "lucide-react";
+import { Cancel01Icon, WhatsappIcon, Copy01Icon, Tick01Icon, ShieldDoneIcon } from "@hugeicons/react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
@@ -48,12 +48,12 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
           onClick={onClose}
           className="absolute top-4 right-4 text-primary hover:text-secondary"
         >
-          <X className="h-6 w-6" />
+          <Cancel01Icon size={24} />
         </Button>
 
         <div className="p-8 text-center">
           <div className="mx-auto w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-full mb-6 text-secondary">
-             <ShieldCheck className="h-8 w-8" />
+             <ShieldDoneIcon size={32} />
           </div>
           
           <h2 className="font-heading text-3xl font-bold uppercase tracking-widest text-primary mb-2">
@@ -86,7 +86,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                     onClick={handleCopy}
                     className="flex items-center gap-1 text-secondary hover:text-primary"
                 >
-                    {copied ? <CheckCircle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    {copied ? <Tick01Icon size={16} /> : <Copy01Icon size={16} />}
                     {copied ? "Copied" : "Copy"}
                 </Button>
              </div>
@@ -94,9 +94,9 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
           <Button
             onClick={handleWhatsApp}
-            className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-7 font-bold uppercase tracking-[1px] hover:bg-[#128C7E] transition-colors shadow-lg"
+            className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-7 font-bold uppercase tracking-[1px] hover:bg-[#128C7E] transition-colors shadow-lg rounded-none"
           >
-            <MessageCircle className="h-6 w-6" />
+            <WhatsappIcon size={24} />
             Send Receipt on WhatsApp
           </Button>
           

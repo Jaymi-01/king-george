@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Facebook, Twitter } from "lucide-react";
+import { InstagramIcon, Facebook01Icon, NewTwitterIcon } from "@hugeicons/react";
 
 export default function Footer() {
   return (
@@ -33,15 +33,15 @@ export default function Footer() {
             <h3 className="text-accent font-heading text-lg font-bold uppercase tracking-widest mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
               <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-                <Instagram className="h-5 w-5" />
+                <InstagramIcon size={20} />
                 <span className="sr-only">Instagram</span>
               </a>
               <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-                <Facebook className="h-5 w-5" />
+                <Facebook01Icon size={20} />
                 <span className="sr-only">Facebook</span>
               </a>
               <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-                <Twitter className="h-5 w-5" />
+                <NewTwitterIcon size={20} />
                 <span className="sr-only">Twitter</span>
               </a>
             </div>

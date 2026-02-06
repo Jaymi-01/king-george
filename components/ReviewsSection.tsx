@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { StarIcon } from "@hugeicons/react";
 
 const reviews = [
   {
@@ -54,7 +54,7 @@ export default function ReviewsSection() {
               </div>
               <div className="flex justify-center mb-4 text-accent">
                 {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
+                  <StarIcon key={i} size={16} fill="currentColor" />
                 ))}
               </div>
               <p className="text-center text-neutral mb-6 font-light leading-relaxed">
