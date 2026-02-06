@@ -8,13 +8,13 @@ const categories = [
   {
     id: 'shoes',
     name: 'Shoes',
-    image: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=1932&auto=format&fit=crop', 
+    image: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?q=80&w=2070&auto=format&fit=crop', 
     link: '/products/shoes'
   },
   {
     id: 'slippers',
     name: 'Slippers',
-    image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1964&auto=format&fit=crop', 
+    image: 'https://images.unsplash.com/photo-1603487742131-4160d6986ba2?q=80&w=1974&auto=format&fit=crop', 
     link: '/products/slippers'
   },
   {
@@ -22,6 +22,12 @@ const categories = [
     name: 'Belts',
     image: 'https://images.unsplash.com/photo-1624222247344-550fb60583dc?q=80&w=2070&auto=format&fit=crop', 
     link: '/products/belts'
+  },
+  {
+    id: 'bags',
+    name: 'Bags',
+    image: 'https://images.unsplash.com/photo-1590874102052-8bea0e30efc9?q=80&w=2070&auto=format&fit=crop', 
+    link: '/products/bags'
   }
 ];
 
@@ -73,7 +79,7 @@ export default function CategoryExplore() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8"
       >
         {categories.map((cat) => (
           <motion.div 
