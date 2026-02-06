@@ -1,26 +1,124 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-heading: var(--font-cormorant-garamond), serif;
+  --font-body: var(--font-lato), sans-serif;
+
+  /* We keep our semantic names but also map them to shadcn variables below */
+  --color-brand-primary: #1A1A1A; /* Deep Obsidian */
+  --color-brand-secondary: #8C462E; /* Rich Cognac */
+  --color-brand-accent: #C5A059; /* Burnished Gold */
+  --color-brand-background: #F9F7F2; /* Almond Parchment */
+  --color-brand-neutral: #4A4A4A; /* Slate Grey */
 }
 
 @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0rem; /* High-end fashion usually uses sharp edges */
+  
+  --background: #F9F7F2; /* Almond Parchment */
+  --foreground: #1A1A1A; /* Deep Obsidian */
+  
+  --card: #F9F7F2;
+  --card-foreground: #1A1A1A;
+  
+  --popover: #F9F7F2;
+  --popover-foreground: #1A1A1A;
+  
+  --primary: #1A1A1A; /* Deep Obsidian */
+  --primary-foreground: #F9F7F2;
+  
+  --secondary: #8C462E; /* Rich Cognac */
+  --secondary-foreground: #F9F7F2;
+  
+  --muted: #4A4A4A20;
+  --muted-foreground: #4A4A4A;
+  
+  --accent: #C5A059; /* Burnished Gold */
+  --accent-foreground: #1A1A1A;
+  
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #4A4A4A40;
+  --input: #4A4A4A40;
+  --ring: #8C462E;
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+}
+
+.dark {
+  --background: #1A1A1A;
+  --foreground: #F9F7F2;
+  
+  --card: #1A1A1A;
+  --card-foreground: #F9F7F2;
+  
+  --popover: #1A1A1A;
+  --popover-foreground: #F9F7F2;
+  
+  --primary: #F9F7F2;
+  --primary-foreground: #1A1A1A;
+  
+  --secondary: #8C462E;
+  --secondary-foreground: #F9F7F2;
+  
+  --muted: #4A4A4A;
+  --muted-foreground: #F9F7F2;
+  
+  --accent: #C5A059;
+  --accent-foreground: #1A1A1A;
+  
+  --border: #F9F7F220;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
 }
