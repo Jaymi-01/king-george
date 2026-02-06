@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { StarIcon } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { StarIcon } from "@hugeicons/core-free-icons";
 
 const reviews = [
   {
@@ -54,7 +55,7 @@ export default function ReviewsSection() {
               </div>
               <div className="flex justify-center mb-4 text-accent">
                 {[...Array(review.rating)].map((_, i) => (
-                  <StarIcon key={i} size={16} fill="currentColor" />
+                  <HugeiconsIcon key={i} icon={StarIcon} size={16} color="currentColor" />
                 ))}
               </div>
               <p className="text-center text-neutral mb-6 font-light leading-relaxed">
