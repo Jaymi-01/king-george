@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, ShoppingBag, User, LogOut } from "lucide-react";
+import { Menu, ShoppingBag, User, LogOut, Package } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
@@ -10,10 +10,17 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const { cart, setIsCartOpen } = useCart();
@@ -63,7 +70,7 @@ export default function Header() {
                 </nav>
                 <div className="mt-auto p-6 border-t border-gray-100">
                   {user ? (
-                    <div className="flex items-center justify-between">
+                    <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         {user.photoURL && (
                           <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200">
@@ -72,8 +79,15 @@ export default function Header() {
                         )}
                         <span className="font-heading font-bold uppercase tracking-wider text-xs">{user.displayName}</span>
                       </div>
-                      <Button variant="ghost" size="sm" className="uppercase tracking-widest text-[10px]" onClick={() => { signOut(); setIsMobileMenuOpen(false); }}>
-                        Sign Out
+                      <Link 
+                        href="/orders" 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-neutral hover:text-primary py-2"
+                      >
+                        <Package className="h-4 w-4" /> View Orders
+                      </Link>
+                      <Button variant="outline" className="w-full uppercase tracking-widest text-[10px] rounded-none py-6 border-primary" onClick={() => { signOut(); setIsMobileMenuOpen(false); }}>
+                        <LogOut className="h-4 w-4 mr-2" /> Sign Out
                       </Button>
                     </div>
                   ) : (
@@ -116,21 +130,37 @@ export default function Header() {
         <div className="flex items-center space-x-2 sm:space-x-4">
           <div className="hidden sm:block">
             {user ? (
-              <div className="flex items-center gap-3">
-                <span className="text-xs uppercase tracking-wide hidden lg:inline-block font-semibold">
-                  {user.displayName?.split(" ")[0]}
-                </span>
-                <div className="relative h-8 w-8 overflow-hidden rounded-full border border-gray-200">
-                  {user.photoURL ? (
-                    <Image src={user.photoURL} alt="User" fill className="object-cover" />
-                  ) : (
-                    <User className="h-full w-full p-1" />
-                  )}
-                </div>
-                <Button variant="ghost" size="icon" onClick={() => signOut()} title="Sign Out">
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 overflow-hidden border border-gray-200">
+                    {user.photoURL ? (
+                      <Image src={user.photoURL} alt="User" fill className="object-cover" />
+                    ) : (
+                      <User className="h-6 w-6" />
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 mt-2 rounded-none border-gray-200 shadow-xl" align="end" forceMount>
+                  <DropdownMenuLabel className="font-heading font-bold uppercase tracking-wider text-xs">
+                    My Account
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild className="cursor-pointer focus:bg-secondary/10">
+                    <Link href="/orders" className="w-full flex items-center font-heading uppercase tracking-widest text-[10px] py-2">
+                      <Package className="mr-2 h-4 w-4" />
+                      <span>View Orders</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    className="cursor-pointer focus:bg-red-50 text-red-600 font-heading uppercase tracking-widest text-[10px] py-2"
+                    onClick={() => signOut()}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Button variant="ghost" className="uppercase tracking-widest text-xs gap-2" onClick={() => signInWithGoogle()}>
                 <User className="h-5 w-5" />
