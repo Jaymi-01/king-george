@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { 
   Menu01Icon, 
   ShoppingBag01Icon, 
   UserIcon, 
   Logout01Icon, 
   PackageIcon 
-} from "@hugeicons/react";
+} from "@hugeicons/core-free-icons";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
@@ -51,7 +52,7 @@ export default function Header() {
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="-ml-2">
-                <Menu01Icon size={24} />
+                <HugeiconsIcon icon={Menu01Icon} size={24} />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
@@ -90,10 +91,10 @@ export default function Header() {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-neutral hover:text-primary py-2"
                       >
-                        <PackageIcon size={16} /> View Orders
+                        <HugeiconsIcon icon={PackageIcon} size={16} /> View Orders
                       </Link>
                       <Button variant="outline" className="w-full uppercase tracking-widest text-[10px] rounded-none py-6 border-primary" onClick={() => { signOut(); setIsMobileMenuOpen(false); }}>
-                        <Logout01Icon size={16} className="mr-2" /> Sign Out
+                        <HugeiconsIcon icon={Logout01Icon} size={16} className="mr-2" /> Sign Out
                       </Button>
                     </div>
                   ) : (
@@ -102,7 +103,7 @@ export default function Header() {
                       className="w-full justify-center gap-3 uppercase tracking-[0.2em] font-heading text-xs py-6 rounded-none border-primary"
                       onClick={() => { signInWithGoogle(); setIsMobileMenuOpen(false); }}
                     >
-                      <UserIcon size={16} />
+                      <HugeiconsIcon icon={UserIcon} size={16} />
                       Sign In
                     </Button>
                   )}
@@ -142,7 +143,7 @@ export default function Header() {
                     {user.photoURL ? (
                       <Image src={user.photoURL} alt="User" fill className="object-cover" />
                     ) : (
-                      <UserIcon size={24} />
+                      <HugeiconsIcon icon={UserIcon} size={24} />
                     )}
                   </Button>
                 </DropdownMenuTrigger>
@@ -153,7 +154,7 @@ export default function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild className="cursor-pointer focus:bg-secondary/10">
                     <Link href="/orders" className="w-full flex items-center font-heading uppercase tracking-widest text-[10px] py-2">
-                      <PackageIcon size={16} className="mr-2" />
+                      <HugeiconsIcon icon={PackageIcon} size={16} className="mr-2" />
                       <span>View Orders</span>
                     </Link>
                   </DropdownMenuItem>
@@ -162,14 +163,14 @@ export default function Header() {
                     className="cursor-pointer focus:bg-red-50 text-red-600 font-heading uppercase tracking-widest text-[10px] py-2"
                     onClick={() => signOut()}
                   >
-                    <Logout01Icon size={16} className="mr-2" />
+                    <HugeiconsIcon icon={Logout01Icon} size={16} className="mr-2" />
                     <span>Log Out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <Button variant="ghost" className="uppercase tracking-widest text-xs gap-2" onClick={() => signInWithGoogle()}>
-                <UserIcon size={20} />
+                <HugeiconsIcon icon={UserIcon} size={20} />
                 <span className="hidden lg:inline">Sign In</span>
               </Button>
             )}
@@ -181,7 +182,7 @@ export default function Header() {
             className="relative"
             onClick={() => setIsCartOpen(true)}
           >
-            <ShoppingBag01Icon size={20} />
+            <HugeiconsIcon icon={ShoppingBag01Icon} size={20} />
             <span className="sr-only">Cart</span>
             {cartItemCount > 0 && (
               <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-secondary text-[10px] font-bold text-white flex items-center justify-center">
