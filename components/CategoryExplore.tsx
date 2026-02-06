@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
@@ -8,13 +9,13 @@ const categories = [
   {
     id: 'shoes',
     name: 'Shoes',
-    image: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?q=80&w=2070&auto=format&fit=crop', 
+    image: 'https://res.cloudinary.com/dquzcqxcy/image/upload/v1770394929/xdlensp6yautkemvz9de.jpg', 
     link: '/products/shoes'
   },
   {
     id: 'slippers',
     name: 'Slippers',
-    image: 'https://images.unsplash.com/photo-1603487742131-4160d6986ba2?q=80&w=1974&auto=format&fit=crop', 
+    image: 'https://res.cloudinary.com/dquzcqxcy/image/upload/v1770394199/umfcrpyxpvb1mnhw7z47.jpg', 
     link: '/products/slippers'
   },
   {
@@ -26,7 +27,7 @@ const categories = [
   {
     id: 'bags',
     name: 'Bags',
-    image: 'https://images.unsplash.com/photo-1590874102052-8bea0e30efc9?q=80&w=2070&auto=format&fit=crop', 
+    image: 'https://res.cloudinary.com/dquzcqxcy/image/upload/v1770394301/nydnyazdydty07tqo4nc.jpg', 
     link: '/products/bags'
   }
 ];
@@ -85,16 +86,20 @@ export default function CategoryExplore() {
           <motion.div 
             key={cat.id} 
             variants={itemVariants}
-            className="group relative aspect-square overflow-hidden border border-gray-200 shadow-sm bg-background"
+            className="group relative aspect-square overflow-hidden border border-gray-200 shadow-sm bg-gray-100"
           >
-            <div 
-               className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
-               style={{ backgroundImage: `url('${cat.image}')` }}
-            ></div>
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-500"></div>
+            <Image
+               src={cat.image}
+               alt={cat.name}
+               fill
+               sizes="(max-width: 768px) 100vw, 50vw"
+               priority
+               className="object-cover transition-transform duration-1000 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-black/5 group-hover:bg-black/25 transition-colors duration-500"></div>
             
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-10">
-              <h3 className="font-heading text-lg font-bold text-white uppercase tracking-[0.3em] mb-6 translate-y-4 group-hover:translate-y-0 transition-all duration-500 drop-shadow-md">
+              <h3 className="font-heading text-xl font-bold text-white uppercase tracking-[0.3em] mb-6 translate-y-4 group-hover:translate-y-0 transition-all duration-500 drop-shadow-lg">
                 {cat.name}
               </h3>
               <div className="opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-500">
