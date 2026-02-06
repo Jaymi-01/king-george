@@ -1,5 +1,6 @@
 "use client";
-import { Cancel01Icon, Delete02Icon, ShieldDoneIcon } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Cancel01Icon, Delete02Icon, Shield01Icon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -56,7 +57,7 @@ export default function CartModal() {
                 onClick={() => setIsCartOpen(false)}
                 className="text-neutral hover:text-secondary -mr-2"
               >
-                <Cancel01Icon size={20} />
+                <HugeiconsIcon icon={Cancel01Icon} size={20} />
               </Button>
             </div>
 
@@ -64,7 +65,7 @@ export default function CartModal() {
             <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-neutral space-y-4">
-                   <ShieldDoneIcon size={48} className="opacity-10" />
+                   <HugeiconsIcon icon={Shield01Icon} size={48} className="opacity-10" />
                    <p className="font-heading uppercase tracking-widest text-xs opacity-40">Your cart is empty</p>
                 </div>
               ) : (
@@ -92,7 +93,7 @@ export default function CartModal() {
                             onClick={() => removeFromCart(item.id)}
                             className="text-neutral hover:text-red-500 transition-colors"
                           >
-                            <Delete02Icon size={14} />
+                            <HugeiconsIcon icon={Delete02Icon} size={14} />
                           </button>
                         </div>
                         <p className="text-[10px] text-neutral mt-2 uppercase tracking-wider">Size: {item.size}</p>
