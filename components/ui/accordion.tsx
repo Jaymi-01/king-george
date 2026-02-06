@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import { ArrowDown01Icon } from "@hugeicons/react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons"
 
 import { cn } from "@/lib/utils"
 
@@ -33,7 +34,8 @@ const AccordionTrigger = ({
       {...props}
     >
       {children}
-      <ArrowDown01Icon
+      <HugeiconsIcon
+        icon={ArrowDown01Icon}
         size={16}
         className="shrink-0 text-muted-foreground transition-transform duration-200"
       />
