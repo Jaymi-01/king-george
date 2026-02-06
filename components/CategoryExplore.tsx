@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const categories = [
   {
@@ -22,17 +25,62 @@ const categories = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 40, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 1, 0.5, 1]
+    }
+  }
+};
+
 export default function CategoryExplore() {
   return (
     <section className="py-24 px-4 max-w-6xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="font-heading text-4xl font-bold text-primary uppercase tracking-[0.2em] mb-4">Curated Essentials</h2>
-        <div className="h-1 w-20 bg-secondary mx-auto"></div>
-      </div>
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="text-center mb-16"
+      >
+        <motion.h2 
+          variants={itemVariants}
+          className="font-heading text-4xl font-bold text-primary uppercase tracking-[0.2em] mb-4"
+        >
+          Curated Essentials
+        </motion.h2>
+        <motion.div 
+          variants={itemVariants}
+          className="h-1 w-20 bg-secondary mx-auto"
+        ></motion.div>
+      </motion.div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+      >
         {categories.map((cat) => (
-          <div key={cat.id} className="group relative aspect-square overflow-hidden border border-gray-200 shadow-sm">
+          <motion.div 
+            key={cat.id} 
+            variants={itemVariants}
+            className="group relative aspect-square overflow-hidden border border-gray-200 shadow-sm bg-background"
+          >
             <div 
                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
                style={{ backgroundImage: `url('${cat.image}')` }}
@@ -51,9 +99,9 @@ export default function CategoryExplore() {
                 </Button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
