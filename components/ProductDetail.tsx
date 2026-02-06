@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Product } from "@/lib/products";
 import clsx from "clsx";
 import SizingGuideModal from "./SizingGuideModal";
-import { ShoppingBag01Icon, RulerIcon } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ShoppingBag01Icon, RulerIcon } from "@hugeicons/core-free-icons";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 
@@ -103,7 +104,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                      onClick={() => setIsSizingOpen(true)}
                      className="flex items-center gap-1 text-sm text-secondary hover:text-primary transition-colors underline"
                    >
-                     <RulerIcon size={16} className="mr-1" />
+                     <HugeiconsIcon icon={RulerIcon} size={16} className="mr-1" />
                      Sizing Guide
                    </button>
                 </div>
@@ -130,7 +131,7 @@ export default function ProductDetail({ product }: { product: Product }) {
               onClick={handleAddToCart}
               className="w-full py-7 font-heading font-bold uppercase tracking-[3px] rounded-none"
             >
-              <ShoppingBag01Icon size={20} className="mr-2" />
+              <HugeiconsIcon icon={ShoppingBag01Icon} size={20} className="mr-2" />
               Add to Cart
             </Button>
           </div>
