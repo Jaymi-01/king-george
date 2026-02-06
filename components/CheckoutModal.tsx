@@ -1,5 +1,6 @@
 "use client";
-import { Cancel01Icon, WhatsappIcon, Copy01Icon, Tick01Icon, ShieldDoneIcon } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Cancel01Icon, WhatsappIcon, Copy01Icon, Tick01Icon, Shield01Icon } from "@hugeicons/core-free-icons";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
@@ -48,12 +49,12 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
           onClick={onClose}
           className="absolute top-4 right-4 text-primary hover:text-secondary"
         >
-          <Cancel01Icon size={24} />
+          <HugeiconsIcon icon={Cancel01Icon} size={24} />
         </Button>
 
         <div className="p-8 text-center">
           <div className="mx-auto w-16 h-16 bg-secondary/10 flex items-center justify-center rounded-full mb-6 text-secondary">
-             <ShieldDoneIcon size={32} />
+             <HugeiconsIcon icon={Shield01Icon} size={32} />
           </div>
           
           <h2 className="font-heading text-3xl font-bold uppercase tracking-widest text-primary mb-2">
@@ -86,7 +87,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                     onClick={handleCopy}
                     className="flex items-center gap-1 text-secondary hover:text-primary"
                 >
-                    {copied ? <Tick01Icon size={16} /> : <Copy01Icon size={16} />}
+                    {copied ? <HugeiconsIcon icon={Tick01Icon} size={16} /> : <HugeiconsIcon icon={Copy01Icon} size={16} />}
                     {copied ? "Copied" : "Copy"}
                 </Button>
              </div>
@@ -96,7 +97,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
             onClick={handleWhatsApp}
             className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-7 font-bold uppercase tracking-[1px] hover:bg-[#128C7E] transition-colors shadow-lg rounded-none"
           >
-            <WhatsappIcon size={24} />
+            <HugeiconsIcon icon={WhatsappIcon} size={24} />
             Send Receipt on WhatsApp
           </Button>
           
