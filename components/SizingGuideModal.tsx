@@ -1,5 +1,6 @@
 "use client";
-import { Cancel01Icon } from "@hugeicons/react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Cancel01Icon } from "@hugeicons/core-free-icons";
 
 interface SizingGuideModalProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export default function SizingGuideModal({ isOpen, onClose, category }: SizingGu
           onClick={onClose}
           className="absolute top-4 right-4 p-2 text-primary hover:text-secondary transition-colors"
         >
-          <Cancel01Icon size={24} />
+          <HugeiconsIcon icon={Cancel01Icon} size={24} />
         </button>
         
         <div className="p-8">
