@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Shield01Icon, StarIcon, TeacherIcon, GlobalIcon, ThreadIcon } from "@hugeicons/core-free-icons";
+import { Shield01Icon, StarIcon, GlobalIcon, ThreadIcon } from "@hugeicons/core-free-icons";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -101,7 +101,7 @@ export default function AboutPage() {
       <section className="bg-primary text-background py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
-            <h2 className="font-heading text-4xl font-bold uppercase tracking-[0.2em] mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-[0.2em] mb-4">
               Uncompromising Quality
             </h2>
             <div className="h-1 w-20 bg-accent mx-auto"></div>
