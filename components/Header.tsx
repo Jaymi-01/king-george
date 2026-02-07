@@ -75,39 +75,6 @@ export default function Header() {
                     </Link>
                   ))}
                 </nav>
-                <div className="mt-auto p-6 border-t border-gray-100">
-                  {user ? (
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        {user.photoURL && (
-                          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-200">
-                            <Image src={user.photoURL} fill className="object-cover" alt="User" />
-                          </div>
-                        )}
-                        <span className="font-heading font-bold uppercase tracking-wider text-xs">{user.displayName}</span>
-                      </div>
-                      <Link 
-                        href="/orders" 
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-neutral hover:text-primary py-2"
-                      >
-                        <HugeiconsIcon icon={PackageIcon} size={16} /> View Orders
-                      </Link>
-                      <Button variant="outline" className="w-full uppercase tracking-widest text-[10px] rounded-none py-6 border-primary" onClick={() => { signOut(); setIsMobileMenuOpen(false); }}>
-                        <HugeiconsIcon icon={Logout01Icon} size={16} className="mr-2" /> Sign Out
-                      </Button>
-                    </div>
-                  ) : (
-                    <Button 
-                      variant="outline" 
-                      className="w-full justify-center gap-3 uppercase tracking-[0.2em] font-heading text-xs py-6 rounded-none border-primary"
-                      onClick={() => { signInWithGoogle(); setIsMobileMenuOpen(false); }}
-                    >
-                      <HugeiconsIcon icon={UserIcon} size={16} />
-                      Sign In
-                    </Button>
-                  )}
-                </div>
               </div>
             </SheetContent>
           </Sheet>
@@ -134,24 +101,19 @@ export default function Header() {
         </nav>
 
         {/* Actions (Sign In / Cart) */}
-        <div className="flex items-center space-x-2 sm:space-x-4">
-          <div className="hidden sm:block">
+        <div className="flex items-center space-x-1 sm:space-x-4">
+          <div className="flex items-center">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 overflow-hidden border border-gray-200">
-                    {user.photoURL ? (
-                      <Image src={user.photoURL} alt="User" fill className="object-cover" />
-                    ) : (
-                      <HugeiconsIcon icon={UserIcon} size={24} />
-                    )}
+                  <Button variant="ghost" size="icon" className="relative h-9 w-9 sm:h-10 sm:w-10 rounded-full p-0 border border-gray-200">
+                    <HugeiconsIcon icon={UserIcon} size={20} />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 mt-2 rounded-none border-gray-200 shadow-xl" align="end" forceMount>
-                  <DropdownMenuLabel className="font-heading font-bold uppercase tracking-wider text-xs">
-                    My Account
+                  <DropdownMenuLabel className="font-heading font-bold uppercase tracking-wider text-xs border-b border-gray-50 pb-2">
+                    {user.displayName || "My Account"}
                   </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
                   <DropdownMenuItem asChild className="cursor-pointer focus:bg-secondary/10">
                     <Link href="/orders" className="w-full flex items-center font-heading uppercase tracking-widest text-[10px] py-2">
                       <HugeiconsIcon icon={PackageIcon} size={16} className="mr-2" />
@@ -169,9 +131,9 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="ghost" className="uppercase tracking-widest text-xs gap-2" onClick={() => signInWithGoogle()}>
+              <Button variant="ghost" size="icon" className="sm:w-auto sm:px-4 uppercase tracking-widest text-xs gap-2" onClick={() => signInWithGoogle()}>
                 <HugeiconsIcon icon={UserIcon} size={20} />
-                <span className="hidden lg:inline">Sign In</span>
+                <span className="hidden sm:inline">Sign In</span>
               </Button>
             )}
           </div>
