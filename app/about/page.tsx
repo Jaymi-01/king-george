@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Shield01Icon, StarIcon, TeacherIcon, GlobalIcon } from "@hugeicons/core-free-icons";
+import { Shield01Icon, StarIcon, TeacherIcon, GlobalIcon, ThreadIcon } from "@hugeicons/core-free-icons";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -112,7 +112,7 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16"
           >
             {[
               {
@@ -121,7 +121,7 @@ export default function AboutPage() {
                 desc: "We use only the top layer of the hide, where the grain is tightest and most durable.",
               },
               {
-                icon: TeacherIcon,
+                icon: ThreadIcon,
                 title: "Hand-Stitched",
                 desc: "Traditional saddle-stitching ensures that our pieces never unravel, unlike machine-made alternatives.",
               },
@@ -136,14 +136,14 @@ export default function AboutPage() {
                 desc: "Shipping our handcrafted heritage from London to discerning clients worldwide.",
               },
             ].map((value, idx) => (
-              <motion.div key={idx} variants={fadeIn} className="text-center group">
+              <motion.div key={idx} variants={fadeIn} className="text-center group px-2">
                 <div className="mb-6 flex justify-center text-accent group-hover:text-secondary transition-colors">
                   <HugeiconsIcon icon={value.icon} size={40} />
                 </div>
                 <h3 className="font-heading text-xl font-bold uppercase tracking-widest mb-4">
                   {value.title}
                 </h3>
-                <p className="text-gray-400 font-light text-sm leading-relaxed">
+                <p className="text-gray-400 font-light text-sm leading-relaxed min-h-[3em]">
                   {value.desc}
                 </p>
               </motion.div>
