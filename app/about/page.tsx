@@ -112,7 +112,7 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12"
           >
             {[
               {
@@ -136,14 +136,14 @@ export default function AboutPage() {
                 desc: "Shipping our handcrafted heritage from London to discerning clients worldwide.",
               },
             ].map((value, idx) => (
-              <motion.div key={idx} variants={fadeIn} className="text-center group px-2">
-                <div className="mb-6 flex justify-center text-accent group-hover:text-secondary transition-colors">
-                  <HugeiconsIcon icon={value.icon} size={40} />
+              <motion.div key={idx} variants={fadeIn} className="text-center group px-4">
+                <div className="mb-4 flex justify-center text-accent group-hover:text-secondary transition-colors">
+                  <HugeiconsIcon icon={value.icon} size={32} />
                 </div>
-                <h3 className="font-heading text-xl font-bold uppercase tracking-widest mb-4">
+                <h3 className="font-heading text-lg font-bold uppercase tracking-widest mb-3">
                   {value.title}
                 </h3>
-                <p className="text-gray-400 font-light text-sm leading-relaxed min-h-[3em]">
+                <p className="text-gray-400 font-light text-xs sm:text-sm leading-relaxed max-w-[250px] mx-auto">
                   {value.desc}
                 </p>
               </motion.div>
