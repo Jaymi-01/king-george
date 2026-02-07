@@ -8,11 +8,11 @@ import {
   ShoppingBag01Icon, 
   UserIcon, 
   Logout01Icon, 
-  PackageIcon 
+  PackageIcon,
+  Cancel01Icon
 } from "@hugeicons/core-free-icons";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -28,6 +28,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const { cart, setIsCartOpen } = useCart();
@@ -47,14 +48,28 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
-        {/* Mobile Menu (shadcn Sheet) */}
+        {/* Mobile Menu Trigger */}
         <div className="lg:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="-ml-2">
-                <HugeiconsIcon icon={Menu01Icon} size={24} />
-                <span className="sr-only">Open menu</span>
-              </Button>
+              <button className="p-2 -ml-2 text-primary hover:text-secondary transition-colors focus:outline-none">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={isMobileMenuOpen ? "open" : "closed"}
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {isMobileMenuOpen ? (
+                      <HugeiconsIcon icon={Cancel01Icon} size={24} />
+                    ) : (
+                      <HugeiconsIcon icon={Menu01Icon} size={24} />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+                <span className="sr-only">Toggle menu</span>
+              </button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px] bg-background border-r border-gray-200 p-0">
               <div className="flex flex-col h-full">
@@ -106,9 +121,9 @@ export default function Header() {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="relative h-9 w-9 sm:h-10 sm:w-10 rounded-full p-0 border border-gray-200">
+                  <button className="relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-gray-200 text-primary hover:text-secondary hover:border-secondary transition-colors focus:outline-none">
                     <HugeiconsIcon icon={UserIcon} size={20} />
-                  </Button>
+                  </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 mt-2 rounded-none border-gray-200 shadow-xl" align="end" forceMount>
                   <DropdownMenuLabel className="font-heading font-bold uppercase tracking-wider text-xs border-b border-gray-50 pb-2">
@@ -131,27 +146,28 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="ghost" size="icon" className="sm:w-auto sm:px-4 uppercase tracking-widest text-xs gap-2" onClick={() => signInWithGoogle()}>
+              <button 
+                onClick={() => signInWithGoogle()}
+                className="flex items-center gap-2 p-2 text-primary hover:text-secondary transition-colors focus:outline-none"
+              >
                 <HugeiconsIcon icon={UserIcon} size={20} />
-                <span className="hidden sm:inline">Sign In</span>
-              </Button>
+                <span className="hidden sm:inline uppercase tracking-widest text-[10px] font-bold">Sign In</span>
+              </button>
             )}
           </div>
           
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="relative"
+          <button 
+            className="relative p-2 text-primary hover:text-secondary transition-colors focus:outline-none"
             onClick={() => setIsCartOpen(true)}
           >
             <HugeiconsIcon icon={ShoppingBag01Icon} size={20} />
             <span className="sr-only">Cart</span>
             {cartItemCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-secondary text-[10px] font-bold text-white flex items-center justify-center">
+              <span className="absolute top-0 right-0 h-4 w-4 rounded-full bg-secondary text-[10px] font-bold text-white flex items-center justify-center">
                 {cartItemCount}
               </span>
             )}
-          </Button>
+          </button>
         </div>
       </div>
     </header>
