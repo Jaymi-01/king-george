@@ -5,6 +5,9 @@ import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -12,9 +15,11 @@ interface CheckoutModalProps {
 }
 
 export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
-  const { cartTotal, cart } = useCart();
+  const { cartTotal, cart, clearCart } = useCart();
   const { user } = useAuth();
   const [copied, setCopied] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const router = useRouter();
 
   if (!isOpen) return null;
 
@@ -40,6 +45,32 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
     window.open(url, '_blank');
   };
 
+  const handlePaymentConfirmation = async () => {
+    if (!user) return;
+    setIsProcessing(true);
+
+    try {
+      await addDoc(collection(db, "orders"), {
+        userId: user.uid,
+        userEmail: user.email,
+        userName: user.displayName,
+        items: cart,
+        totalAmount: cartTotal,
+        status: "pending", 
+        createdAt: serverTimestamp(),
+      });
+
+      clearCart();
+      onClose();
+      router.push("/order-confirmation");
+    } catch (error) {
+      console.error("Error saving order:", error);
+      alert("Failed to save order. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="relative w-full max-w-lg bg-background border border-gray-200 shadow-2xl overflow-hidden">
@@ -47,7 +78,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
           variant="ghost"
           size="icon"
           onClick={onClose}
-          className="absolute top-4 right-4 text-primary hover:text-secondary"
+          className="absolute top-4 right-4 text-primary hover:text-secondary hover:bg-transparent"
         >
           <HugeiconsIcon icon={Cancel01Icon} size={24} />
         </Button>
@@ -85,7 +116,7 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
                     variant="ghost"
                     size="sm"
                     onClick={handleCopy}
-                    className="flex items-center gap-1 text-secondary hover:text-primary"
+                    className="flex items-center gap-1 text-secondary hover:text-primary hover:bg-transparent"
                 >
                     {copied ? <HugeiconsIcon icon={Tick01Icon} size={16} /> : <HugeiconsIcon icon={Copy01Icon} size={16} />}
                     {copied ? "Copied" : "Copy"}
@@ -93,13 +124,23 @@ export default function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
              </div>
           </div>
 
-          <Button
-            onClick={handleWhatsApp}
-            className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-7 font-bold uppercase tracking-[1px] hover:bg-[#128C7E] transition-colors shadow-lg rounded-none"
-          >
-            <HugeiconsIcon icon={WhatsappIcon} size={24} />
-            Send Receipt on WhatsApp
-          </Button>
+          <div className="space-y-3">
+            <Button
+              onClick={handleWhatsApp}
+              className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-7 font-bold uppercase tracking-[1px] hover:bg-[#128C7E] transition-colors shadow-lg rounded-none"
+            >
+              <HugeiconsIcon icon={WhatsappIcon} size={24} />
+              Send Receipt on WhatsApp
+            </Button>
+
+            <button
+              onClick={handlePaymentConfirmation}
+              disabled={isProcessing}
+              className="w-full py-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral hover:text-primary transition-colors underline disabled:opacity-50"
+            >
+              {isProcessing ? "Processing..." : "I have made the payment"}
+            </button>
+          </div>
           
           <p className="mt-4 text-xs text-neutral">
             Order verification may take up to 24 hours.

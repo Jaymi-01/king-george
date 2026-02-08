@@ -55,7 +55,7 @@ export default function CartModal() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsCartOpen(false)}
-                className="text-neutral hover:text-secondary -mr-2"
+                className="text-neutral hover:text-secondary hover:bg-transparent -mr-2"
               >
                 <HugeiconsIcon icon={Cancel01Icon} size={20} />
               </Button>
